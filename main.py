@@ -74,7 +74,7 @@ class MainApp(ctk.CTk):
         ctk.CTkLabel(self.sidebar, text="").pack(expand=True)
         ctk.CTkLabel(
             self.sidebar,
-            text="Projet Semestriel · 2024",
+            text="Projet Semestriel · 2025",
             font=ctk.CTkFont(size=10),
             text_color="gray",
         ).pack(pady=10)
