@@ -4,7 +4,7 @@ from config import DB_CONFIG
 
 
 def get_connection():
-    """Retourne une connexion MySQL. Lève une exception claire en cas d'échec."""
+    
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
         return conn
@@ -13,11 +13,7 @@ def get_connection():
 
 
 def execute_query(query: str, params: tuple = (), fetch: bool = False):
-    """
-    Exécute une requête paramétrée de manière sécurisée.
-    - fetch=False : INSERT / UPDATE / DELETE  → retourne le nombre de lignes affectées
-    - fetch=True  : SELECT                    → retourne la liste des lignes
-    """
+    
     conn = None
     cursor = None
     try:

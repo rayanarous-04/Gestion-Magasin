@@ -27,19 +27,19 @@ class MainApp(ctk.CTk):
         self._current_frame: ctk.CTkFrame | None = None
 
         self._build_layout()
-        # Affiche la première page par défaut
+        
         first_name = next(iter(self.PAGES))
         self._show_page(first_name)
 
-    # ------------------------------------------------------------------ #
+    
 
     def _build_layout(self):
-        # ── Sidebar ────────────────────────────────────────────────────
+        
         self.sidebar = ctk.CTkFrame(self, width=200, corner_radius=0)
         self.sidebar.pack(side="left", fill="y")
         self.sidebar.pack_propagate(False)
 
-        # Logo / titre
+        
         ctk.CTkLabel(
             self.sidebar,
             text="🏪 Magasin Pro",
@@ -53,7 +53,7 @@ class MainApp(ctk.CTk):
             text_color="gray",
         ).pack(anchor="w", padx=18, pady=(0, 4))
 
-        # Boutons de navigation
+        
         self._nav_buttons: dict[str, ctk.CTkButton] = {}
         for name in self.PAGES:
             btn = ctk.CTkButton(
@@ -70,7 +70,7 @@ class MainApp(ctk.CTk):
             btn.pack(fill="x", padx=10, pady=2)
             self._nav_buttons[name] = btn
 
-        # Séparateur + bas de sidebar
+        
         ctk.CTkLabel(self.sidebar, text="").pack(expand=True)
         ctk.CTkLabel(
             self.sidebar,
@@ -79,31 +79,31 @@ class MainApp(ctk.CTk):
             text_color="gray",
         ).pack(pady=10)
 
-        # ── Zone de contenu principale ─────────────────────────────────
+        
         self.content_area = ctk.CTkFrame(self, corner_radius=0,
                                          fg_color=("gray95", "gray10"))
         self.content_area.pack(side="left", fill="both", expand=True)
 
-    # ------------------------------------------------------------------ #
+    
 
     def _show_page(self, name: str):
-        # Mise à jour visuelle du bouton actif
+        
         if self._active_btn:
             self._active_btn.configure(fg_color="transparent")
         self._active_btn = self._nav_buttons[name]
         self._active_btn.configure(fg_color=("gray75", "gray30"))
 
-        # Destruction de la vue précédente
+        
         if self._current_frame:
             self._current_frame.destroy()
 
-        # Instanciation de la nouvelle vue
+        
         view_class = self.PAGES[name]
         self._current_frame = view_class(self.content_area)
         self._current_frame.pack(fill="both", expand=True)
 
 
-# ====================================================================== #
+
 
 if __name__ == "__main__":
     app = MainApp()
